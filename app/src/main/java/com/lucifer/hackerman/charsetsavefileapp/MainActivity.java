@@ -33,10 +33,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        EditText inputText = (EditText) findViewById(R.id.editText);
+        EditText inputText = (EditText) findViewById(R.id.inputText);
         String s = inputText.getText().toString();
         writeFile(s);
         inputText.setText("");
+        showText();
+    }
+
+    private void showText() {
+        EditText inputText = (EditText) findViewById(R.id.inputText);
+        TextView showText = (TextView) findViewById(R.id.tvrShow);
+        showText.setText(inputText.getText().toString());
     }
 
     private void writeFile(String s) {
@@ -45,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
             PrintWriter file = new PrintWriter(sdPath + "/" + FileName, "windows-1251");
             file.write(s);
             file.close();
-            TextView pathToFile = (TextView) findViewById(R.id.resultTextShow);
+            TextView pathToFile = (TextView) findViewById(R.id.fileLocation);
             pathToFile.setText(sdPath.getAbsolutePath() + "/" + FileName);
             Log.d(LOG_TAG, "File location" + sdPath.getAbsolutePath() + "/" + FileName);
         } catch (

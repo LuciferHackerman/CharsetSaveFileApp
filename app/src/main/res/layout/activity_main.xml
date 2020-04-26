@@ -17,7 +17,7 @@
             android:text="Type text below:"></TextView>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/inputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
 
@@ -29,17 +29,28 @@
             android:text="Create file with text encoding in Win1251"></Button>
 
         <TextView
-            android:id="@+id/resultText"
+            android:id="@+id/tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="File saved in:"></TextView>
 
         <TextView
-            android:id="@+id/resultTextShow"
+            android:id="@+id/fileLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""></TextView>
 
+        <TextView
+            android:id="@+id/tvr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your text"></TextView>
+
+        <TextView
+            android:id="@+id/tvrShow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""></TextView>
 
     </LinearLayout>
 
