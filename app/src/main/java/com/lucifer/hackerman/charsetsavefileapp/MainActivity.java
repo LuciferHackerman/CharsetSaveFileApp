@@ -13,8 +13,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.text.MessageFormat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,28 +37,27 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View view) {
         EditText inputText = (EditText) findViewById(R.id.inputText);
         String s = inputText.getText().toString();
+        showText(s);
         writeFile(s);
         inputText.setText("");
-        showText();
     }
 
-    private void showText() {
-        EditText inputText = (EditText) findViewById(R.id.inputText);
+    private void showText(String s) {
         TextView showText = (TextView) findViewById(R.id.tvrShow);
-        showText.setText(inputText.getText().toString());
+        showText.setText(s);
     }
 
     private void writeFile(String s) {
         File sdPath = new File(getExternalFilesDir(null) + "/lab3");
+        sdPath.mkdirs();
         try {
             PrintWriter file = new PrintWriter(sdPath + "/" + FileName, "windows-1251");
             file.write(s);
             file.close();
             TextView pathToFile = (TextView) findViewById(R.id.fileLocation);
-            pathToFile.setText(sdPath.getAbsolutePath() + "/" + FileName);
+            pathToFile.setText(MessageFormat.format("{0}/{1}", sdPath.getAbsolutePath(), FileName));
             Log.d(LOG_TAG, "File location" + sdPath.getAbsolutePath() + "/" + FileName);
-        } catch (
-                IOException e) {
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
