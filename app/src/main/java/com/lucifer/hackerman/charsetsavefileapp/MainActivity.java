@@ -33,11 +33,14 @@ public class MainActivity extends AppCompatActivity {
         EditText inputText = (EditText) findViewById(R.id.inputText);
         String textData = inputText.getText().toString();
         showText(textData);
+
         File path = new File(getExternalFilesDir(null) + "/lab");
         path.mkdirs();
+
         WriteCharsetFile wcf = new WriteCharsetFile();
         wcf.setPathFilenameData(FileName, textData, path);
         wcf.writeCharsetFile();
+
         TextView pathToFile = (TextView) findViewById(R.id.fileLocation);
         pathToFile.setText(MessageFormat.format("{0}/{1}", path.getAbsolutePath(), FileName));
         inputText.setText("");
