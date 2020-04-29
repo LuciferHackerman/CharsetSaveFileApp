@@ -8,10 +8,12 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 public class WriteCharsetFile {
-    final String LOG = "Write File Tag >>>";
-    String fileName;
-    String textData;
-    File sdPath;
+
+    final private String LOG = "Write File Tag >>>";
+
+    private String fileName;
+    private String textData;
+    private File sdPath;
 
     public void setPathFilenameData(String FileName, String data, File path) {
         fileName = FileName;
