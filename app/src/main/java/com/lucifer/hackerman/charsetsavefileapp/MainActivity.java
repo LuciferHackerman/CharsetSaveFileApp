@@ -20,19 +20,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-        int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
-        } else {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-        }
+        permissionRequest();
     }
 
     public void onClick(View view) {
         EditText inputText = (EditText) findViewById(R.id.inputText);
         String textData = inputText.getText().toString();
         showText(textData);
+
+        permissionRequest();
 
         File path = new File(getExternalFilesDir(null) + "/lab");
         path.mkdirs();
@@ -49,5 +46,13 @@ public class MainActivity extends AppCompatActivity {
     private void showText(String s) {
         TextView showText = (TextView) findViewById(R.id.tvrShow);
         showText.setText(s);
+    }
+
+    private void permissionRequest() {
+        int permissionStatus = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permissionStatus == PackageManager.PERMISSION_GRANTED) {
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }
     }
 }
